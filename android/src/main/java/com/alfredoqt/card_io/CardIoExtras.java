@@ -13,7 +13,6 @@ public class CardIoExtras {
     private boolean _mRestrictPostalCodeToNumericOnly;
     private boolean _mRequireCardholderName;
     private boolean _mUseCardIOLogo;
-    private boolean _mManualEntryResult;
     private boolean _mSuppressManualEntry;
     private String _mLanguageOrLocale;
     private int _mGuideColor;
@@ -37,7 +36,6 @@ public class CardIoExtras {
         _mRestrictPostalCodeToNumericOnly = false;
         _mRequireCardholderName = false;
         _mUseCardIOLogo = false;
-        _mManualEntryResult = false;
         _mSuppressManualEntry = false;
         _mLanguageOrLocale = null;
         _mGuideColor = Color.GREEN;
@@ -83,10 +81,6 @@ public class CardIoExtras {
             if (methodCall.hasArgument("useCardIOLogo")) {
                 extras._mUseCardIOLogo =
                         methodCall.argument("useCardIOLogo");
-            }
-            if (methodCall.hasArgument("manualEntryResult")) {
-                extras._mManualEntryResult =
-                        methodCall.argument("manualEntryResult");
             }
             if (methodCall.hasArgument("languageOrLocale")) {
                 extras._mLanguageOrLocale =
@@ -170,10 +164,6 @@ public class CardIoExtras {
         return _mUseCardIOLogo;
     }
 
-    public boolean manualEntryResult() {
-        return _mManualEntryResult;
-    }
-
     public boolean suppressManualEntry() {
         return _mSuppressManualEntry;
     }
@@ -206,15 +196,15 @@ public class CardIoExtras {
         return _mCapturedCardImage;
     }
 
-    public boolean isReturnCardImage() {
+    public boolean returnCardImage() {
         return _mReturnCardImage;
     }
 
-    public boolean isUsePayPalActionBarIcon() {
+    public boolean usePayPalActionBarIcon() {
         return _mUsePayPalActionBarIcon;
     }
 
-    public boolean isKeepApplicationTheme() {
+    public boolean keepApplicationTheme() {
         return _mKeepApplicationTheme;
     }
 

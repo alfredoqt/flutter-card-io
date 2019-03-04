@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6df53b88-2bcb-4004-9e76-1c702eece91c" name="Default Changelist" comment="" />
+    <list default="true" id="6df53b88-2bcb-4004-9e76-1c702eece91c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoExtras.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoExtras.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoPlugin.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -37,12 +41,16 @@
       </file>
     </leaf>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="77" />
     <option name="y" value="47" />
     <option name="width" value="1279" />
     <option name="height" value="701" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -113,7 +121,7 @@
       <window_info id="Captures" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980047" />
       <window_info anchor="bottom" id="Run" />
-      <window_info anchor="bottom" id="Dart Analysis" visible="true" weight="0.3284553" />
+      <window_info anchor="bottom" id="Dart Analysis" visible="true" weight="0.32952693" />
       <window_info anchor="bottom" id="Logcat" />
       <window_info anchor="bottom" id="TODO" />
       <window_info anchor="bottom" id="Debug" />
