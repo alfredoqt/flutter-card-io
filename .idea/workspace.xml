@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6df53b88-2bcb-4004-9e76-1c702eece91c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoExtras.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoExtras.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/alfredoqt/card_io/CardIoPlugin.java" afterDir="false" />
-    </list>
+    <list default="true" id="6df53b88-2bcb-4004-9e76-1c702eece91c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -21,6 +17,7 @@
     <session id="-1618170425">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -110,7 +107,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Capture Tool" />
       <window_info id="Structure" side_tool="true" />
