@@ -3,7 +3,11 @@ package com.alfredoqt.card_io;
 import android.app.Activity;
 import android.content.Intent;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.card.payment.CardIOActivity;
+import io.card.payment.CreditCard;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -44,6 +48,8 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
 
             CardIoExtras cardIoExtras = CardIoExtras.fromMethodCall(call);
 
+            _mResult = result;
+
             Intent intent = new Intent(activity, CardIOActivity.class)
                     .putExtra(CardIOActivity.EXTRA_NO_CAMERA, cardIoExtras.noCamera())
                     .putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, cardIoExtras.requireExpiry())
@@ -73,7 +79,62 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
     }
 
     @Override
-    public boolean onActivityResult(int i, int i1, Intent intent) {
+    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE) {
+            if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
+                CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+                // Dynamic map values
+                Map<String, Object> response = new HashMap<>();
+
+                // Put all the data from the result
+                response.put("cardNumber", scanResult.cardNumber);
+                response.put("expiryMonth", scanResult.expiryMonth);
+                response.put("expiryYear", scanResult.expiryYear);
+                response.put("cvv", scanResult.cvv);
+                response.put("postalCode", scanResult.postalCode);
+
+                String cardType = null;
+
+                // Find the card type
+                switch (scanResult.getCardType()) {
+                    case AMEX:
+                        cardType = "Amex";
+                        break;
+                    case JCB:
+                        cardType = "JCB";
+                        break;
+                    case VISA:
+                        cardType = "Visa";
+                        break;
+                    case MAESTRO:
+                        cardType = "Maestro";
+                        break;
+                    case MASTERCARD:
+                        cardType = "Mastercard";
+                        break;
+                    case DISCOVER:
+                        cardType = "Discover";
+                        break;
+                    case DINERSCLUB:
+                        cardType = "DinersClub";
+                        break;
+                    default:
+                        // Includes: UNKNOWN AND INSUFFICIENT_DIGITS
+                        break;
+                }
+                response.put("cardType", cardType);
+
+                // Send back the response
+                _mResult.success(response);
+            }
+            else {
+                // Send null back
+                _mResult.success(null);
+            }
+            // Clean up memory
+            _mResult = null;
+            return true;
+        }
         return false;
     }
 }
