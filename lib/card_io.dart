@@ -43,23 +43,6 @@ class CardIo {
     bool requireCardholderName,
     bool useCardIOLogo,
   }) async {
-    // final Map<String, dynamic> options = {
-    //   'languageOrLocale': languageOrLocale,
-    //   'keepApplicationTheme': keepApplicationTheme,
-    //   'guideColor': guideColor,
-    //   'suppressConfirmation': suppressConfirmation,
-    //   'suppressManualEntry': suppressManualEntry,
-    //   'suppressScan': suppressScan,
-    //   'scanInstructions': scanInstructions,
-    //   'hideCardIOLogo': hideCardIOLogo,
-    //   'requireExpiry': requireExpiry,
-    //   'requireCVV': requireCVV,
-    //   'scanExpiry': scanExpiry,
-    //   'requirePostalCode': requirePostalCode,
-    //   'restrictPostalCodeToNumericOnly': restrictPostalCodeToNumericOnly,
-    //   'requireCardholderName': requireCardholderName,
-    //   'useCardIOLogo': useCardIOLogo,
-    // };
     Map<String, dynamic> options = new Map();
     if (languageOrLocale != null) {
       options['languageOrLocale'] = languageOrLocale;
