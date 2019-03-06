@@ -122,6 +122,10 @@ public class CardIoExtras {
                 extras._mKeepApplicationTheme =
                         methodCall.argument("keepApplicationTheme");
             }
+            if (methodCall.hasArgument("suppressManualEntry")) {
+                extras._mSuppressManualEntry =
+                        methodCall.argument("suppressManualEntry");
+            }
             return extras;
         } catch (java.lang.NullPointerException e) {
             return null;

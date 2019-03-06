@@ -46,12 +46,17 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
                 return;
             }
 
+            // Check if it was previously requested
+            if (_mResult != null) {
+                result.error("multiple_request", "Cancelled by a second request.", null);
+                return;
+            }
+
             CardIoExtras cardIoExtras = CardIoExtras.fromMethodCall(call);
 
             _mResult = result;
 
             Intent intent = new Intent(activity, CardIOActivity.class)
-                    .putExtra(CardIOActivity.EXTRA_NO_CAMERA, cardIoExtras.noCamera())
                     .putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, cardIoExtras.requireExpiry())
                     .putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, cardIoExtras.scanExpiry())
                     .putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, cardIoExtras.requireCVV())
@@ -61,15 +66,11 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
                     .putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, cardIoExtras.suppressManualEntry())
                     .putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, cardIoExtras.useCardIOLogo())
                     .putExtra(CardIOActivity.EXTRA_LANGUAGE_OR_LOCALE, cardIoExtras.getLanguageOrLocale())
-                    .putExtra(CardIOActivity.EXTRA_USE_PAYPAL_ACTIONBAR_ICON, cardIoExtras.usePayPalActionBarIcon())
                     .putExtra(CardIOActivity.EXTRA_KEEP_APPLICATION_THEME, cardIoExtras.keepApplicationTheme())
                     .putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, cardIoExtras.getGuideColor())
                     .putExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION, cardIoExtras.suppressConfirmation())
                     .putExtra(CardIOActivity.EXTRA_SUPPRESS_SCAN, cardIoExtras.suppressScan())
-                    .putExtra(CardIOActivity.EXTRA_RETURN_CARD_IMAGE, cardIoExtras.returnCardImage())
                     .putExtra(CardIOActivity.EXTRA_SCAN_INSTRUCTIONS, cardIoExtras.getScanInstructions())
-                    .putExtra(CardIOActivity.EXTRA_UNBLUR_DIGITS, cardIoExtras.getUnblurDigits())
-                    .putExtra(CardIOActivity.EXTRA_CAPTURED_CARD_IMAGE, cardIoExtras.getCapturedCardImage())
                     .putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, cardIoExtras.hideCardIOLogo());
 
             activity.startActivityForResult(intent, REQUEST_CODE);
@@ -92,6 +93,8 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
                 response.put("expiryYear", scanResult.expiryYear);
                 response.put("cvv", scanResult.cvv);
                 response.put("postalCode", scanResult.postalCode);
+                response.put("redactedCardNumber", scanResult.getRedactedCardNumber());
+                response.put("cardholderName", scanResult.cardholderName);
 
                 String cardType = null;
 
@@ -106,19 +109,14 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
                     case VISA:
                         cardType = "Visa";
                         break;
-                    case MAESTRO:
-                        cardType = "Maestro";
-                        break;
                     case MASTERCARD:
                         cardType = "Mastercard";
                         break;
                     case DISCOVER:
                         cardType = "Discover";
                         break;
-                    case DINERSCLUB:
-                        cardType = "DinersClub";
-                        break;
                     default:
+                        // TODO: Include MAESTRO and DINERSCLUB once the iOS source is modified
                         // Includes: UNKNOWN AND INSUFFICIENT_DIGITS
                         break;
                 }
@@ -131,7 +129,7 @@ public class CardIoPlugin implements MethodCallHandler, ActivityResultListener {
                 // Send null back
                 _mResult.success(null);
             }
-            // Clean up memory
+            // Clean up memory and prepare for future requests
             _mResult = null;
             return true;
         }

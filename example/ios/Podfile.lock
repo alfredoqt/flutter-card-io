@@ -1,0 +1,29 @@
+PODS:
+  - card_io (0.0.1):
+    - CardIO
+    - Flutter
+  - CardIO (5.4.1)
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - card_io (from `.symlinks/plugins/card_io/ios`)
+  - Flutter (from `.symlinks/flutter/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CardIO
+
+EXTERNAL SOURCES:
+  card_io:
+    :path: ".symlinks/plugins/card_io/ios"
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+
+SPEC CHECKSUMS:
+  card_io: 0ca1520cf1456943ac4b72dacb9bbea0bce9ef90
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+
+PODFILE CHECKSUM: aff02bfeed411c636180d6812254b2daeea14d09
+
+COCOAPODS: 1.6.1
