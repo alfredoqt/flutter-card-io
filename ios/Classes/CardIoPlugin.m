@@ -10,7 +10,7 @@
     // The arguments passed from the client
     NSDictionary* _cardIOArguments;
     // Store the result to call it elsewhere
-    FlutterResult* _result;
+    FlutterResult _result;
     // Save a reference to start the CardIOPaymentViewController
     CardIOPaymentViewController* _cardIOPaymentViewController;
 }
@@ -38,7 +38,7 @@
         _rootViewController = viewController;
         
         // Initialize the payment view controller;
-        _rootViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+        _cardIOPaymentViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
     }
     
     return self;
@@ -58,7 +58,8 @@
         _cardIOArguments = call.arguments;
         // Setup default parameters
         _cardIOPaymentViewController.languageOrLocale = [_cardIOArguments objectForKey:@"languageOrLocale"];
-        _cardIOPaymentViewController.keepStatusBarStyle = [_cardIOArguments objectForKey:@"keepApplicationTheme"] ? [[_cardIOArguments objectForKey:@"keepApplicationTheme"] boolValue] : false;
+        
+        _cardIOPaymentViewController.keepStatusBarStyle = [_cardIOArgument objectForKey:@"keepApplicationTheme"] ? [[_cardIOArguments objectForKey:@"keepApplicationTheme"] boolValue] : false;
         
         UIColor* guideColor = nil;
         if ([_cardIOArguments objectForKey:@"guideColor"]) {
@@ -68,20 +69,29 @@
         }
         _cardIOPaymentViewController.guideColor = guideColor;
         _cardIOPaymentViewController.suppressScanConfirmation = [_cardIOArguments objectForKey:@"suppressConfirmation"] ? [[_cardIOArguments objectForKey:@"suppressConfirmation"] boolValue] : false;
+        
         _cardIOPaymentViewController.disableManualEntryButtons = [_cardIOArguments objectForKey:@"suppressManualEntry"] ? [[_cardIOArguments objectForKey:@"suppressManualEntry"] boolValue] : false;
         
         // TODO: Test this to know whether it is the same flag as SUPPRESS_SCAN in the Android SDK
         _cardIOPaymentViewController.suppressScannedCardImage = [_cardIOArguments objectForKey:@"suppressScan"] ? [[_cardIOArguments objectForKey:@"suppressScan"] boolValue] : false;
+        
         _cardIOPaymentViewController.scanInstructions = [_cardIOArguments objectForKey:@"scanInstructions"];
+        
         _cardIOPaymentViewController.hideCardIOLogo = [_cardIOArguments objectForKey:@"hideCardIOLogo"] ? [[_cardIOArguments objectForKey:@"hideCardIOLogo"] boolValue] : false;
         
         // Setting the same defaults as in Android SDK, for some strange reason they differ
         _cardIOPaymentViewController.collectExpiry = [_cardIOArguments objectForKey:@"requireExpiry"] ? [[_cardIOArguments objectForKey:@"requireExpiry"] boolValue] : false;
+        
         _cardIOPaymentViewController.collectCVV = [_cardIOArguments objectForKey:@"requireCVV"] ? [[_cardIOArguments objectForKey:@"requireCVV"] boolValue] : false;
+        
         _cardIOPaymentViewController.scanExpiry = [_cardIOArguments objectForKey:@"scanExpiry"] ? [[_cardIOArguments objectForKey:@"scanExpiry"] boolValue] : true;
+        
         _cardIOPaymentViewController.collectPostalCode = [_cardIOArguments objectForKey:@"requirePostalCode"] ? [[_cardIOArguments objectForKey:@"requirePostalCode"] boolValue] : false;
+        
         _cardIOPaymentViewController.restrictPostalCodeToNumericOnly = [_cardIOArguments objectForKey:@"restrictPostalCodeToNumericOnly"] ? [[_cardIOArguments objectForKey:@"restrictPostalCodeToNumericOnly"] boolValue] : false;
+        
         _cardIOPaymentViewController.collectCardholderName = [_cardIOArguments objectForKey:@"requireCardholderName"] ? [[_cardIOArguments objectForKey:@"requireCardholderName"] boolValue] : false;
+        
         _cardIOPaymentViewController.useCardIOLogo = [_cardIOArguments objectForKey:@"useCardIOLogo"] ? [[_cardIOArguments objectForKey:@"useCardIOLogo"] boolValue] : false;
         
         // Present the card payment view controller

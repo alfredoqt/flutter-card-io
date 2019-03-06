@@ -43,23 +43,70 @@ class CardIo {
     bool requireCardholderName,
     bool useCardIOLogo,
   }) async {
-    final Map<String, dynamic> options = {
-      'languageOrLocale': languageOrLocale,
-      'keepApplicationTheme': keepApplicationTheme,
-      'guideColor': guideColor,
-      'suppressConfirmation': suppressConfirmation,
-      'suppressManualEntry': suppressManualEntry,
-      'suppressScan': suppressScan,
-      'scanInstructions': scanInstructions,
-      'hideCardIOLogo': hideCardIOLogo,
-      'requireExpiry': requireExpiry,
-      'requireCVV': requireCVV,
-      'scanExpiry': scanExpiry,
-      'requirePostalCode': requirePostalCode,
-      'restrictPostalCodeToNumericOnly': restrictPostalCodeToNumericOnly,
-      'requireCardholderName': requireCardholderName,
-      'useCardIOLogo': useCardIOLogo,
-    };
+    // final Map<String, dynamic> options = {
+    //   'languageOrLocale': languageOrLocale,
+    //   'keepApplicationTheme': keepApplicationTheme,
+    //   'guideColor': guideColor,
+    //   'suppressConfirmation': suppressConfirmation,
+    //   'suppressManualEntry': suppressManualEntry,
+    //   'suppressScan': suppressScan,
+    //   'scanInstructions': scanInstructions,
+    //   'hideCardIOLogo': hideCardIOLogo,
+    //   'requireExpiry': requireExpiry,
+    //   'requireCVV': requireCVV,
+    //   'scanExpiry': scanExpiry,
+    //   'requirePostalCode': requirePostalCode,
+    //   'restrictPostalCodeToNumericOnly': restrictPostalCodeToNumericOnly,
+    //   'requireCardholderName': requireCardholderName,
+    //   'useCardIOLogo': useCardIOLogo,
+    // };
+    Map<String, dynamic> options = new Map();
+    if (languageOrLocale != null) {
+      options['languageOrLocale'] = languageOrLocale;
+    }
+    if (keepApplicationTheme != null) {
+      options['keepApplicationTheme'] = keepApplicationTheme;
+    }
+    if (guideColor != null) {
+      options['guideColor'] = guideColor;
+    }
+    if (suppressConfirmation != null) {
+      options['suppressConfirmation'] = suppressConfirmation;
+    }
+    if (suppressManualEntry != null) {
+      options['suppressManualEntry'] = suppressManualEntry;
+    }
+    if (suppressScan != null) {
+      options['suppressScan'] = suppressScan;
+    }
+    if (scanInstructions != null) {
+      options['scanInstructions'] = scanInstructions;
+    }
+    if (hideCardIOLogo != null) {
+      options['hideCardIOLogo'] = hideCardIOLogo;
+    }
+    if (requireExpiry != null) {
+      options['requireExpiry'] = requireExpiry;
+    }
+    if (requireCVV != null) {
+      options['requireCVV'] = requireCVV;
+    }
+    if (scanExpiry != null) {
+      options['scanExpiry'] = scanExpiry;
+    }
+    if (requirePostalCode != null) {
+      options['requirePostalCode'] = requirePostalCode;
+    }
+    if (restrictPostalCodeToNumericOnly != null) {
+      options['restrictPostalCodeToNumericOnly'] =
+          restrictPostalCodeToNumericOnly;
+    }
+    if (requireCardholderName != null) {
+      options['requireCardholderName'] = requireCardholderName;
+    }
+    if (useCardIOLogo != null) {
+      options['useCardIOLogo'] = useCardIOLogo;
+    }
     return CardIoResult.fromJson(
         await _channel.invokeMethod<Map<String, dynamic>>('scanCard', options));
   }
