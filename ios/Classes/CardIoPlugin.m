@@ -59,7 +59,7 @@
         // Setup default parameters
         _cardIOPaymentViewController.languageOrLocale = [_cardIOArguments objectForKey:@"languageOrLocale"];
         
-        _cardIOPaymentViewController.keepStatusBarStyle = [_cardIOArgument objectForKey:@"keepApplicationTheme"] ? [[_cardIOArguments objectForKey:@"keepApplicationTheme"] boolValue] : false;
+        _cardIOPaymentViewController.keepStatusBarStyle = [_cardIOArguments objectForKey:@"keepApplicationTheme"] ? [[_cardIOArguments objectForKey:@"keepApplicationTheme"] boolValue] : false;
         
         UIColor* guideColor = nil;
         if ([_cardIOArguments objectForKey:@"guideColor"]) {
